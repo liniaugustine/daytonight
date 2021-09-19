@@ -1,0 +1,285 @@
+
+{% load static %} 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Diet Today</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <style>
+    body{
+        background-image:url("{% static 'images/tomato.jpg' %}");
+        background-size: cover;
+        
+    }
+    .mytext{
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 55px;
+    }
+    .transparent{
+        background:linear-gradient( rgba(0,0,0,0.7),
+         rgba(0,0,0,0.7));
+        opacity: 0.8;
+        margin-top: 10%;
+        height: 500px;
+        width: 350px;
+        }   
+    .trnspr{
+        background:linear-gradient( rgba(0,0,0,0.7),
+         rgba(0,0,0,0.7));
+        height: 400px; 
+        width: 300px; 
+        border: 8px solid aqua;
+        border-radius: 20px;
+    }       
+    </style>
+</head>
+<body>
+    <div class="container-fluid">
+        <!--nav links-->
+            <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+                    <a class="navbar-brand" href="plan2"><i class="fa fa-home"></i> Home</a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarNav">
+                        <ul class="navbar-nav">
+                            <li class="nav-item active">
+                                <a class="nav-link" href="diet">Diet & Workout Plan</a>
+                            </li>
+                        </ul>
+                    </div>
+            </nav>
+
+        
+            <div class="mytext col-md-12 col-lg-4 d-none d-lg-block">
+                <label id="today" class="text-white " style="font-size: 40px"></label><br> <!--today-mon,tue,thu-->
+                <label id="time" class="text-white"></label><br> <!--time-->
+                <label id="wishes" class="text-white" style="font-size: 40px"></label> <!--greeting-->
+                <button class="btn btn-success btn-lg" data-toggle="modal" data-target="#myplan">View my plan</button>
+            </div>
+            <!--for small screen-->
+            <div class="d-lg-none col-md-12">
+                <label id="stoday" class="text-white" style="font-size: 40px"></label><br> <!--today-mon,tue,thu-->
+                <label id="stime" class="text-white" style="font-size: 30px"></label><br> <!--time-->
+                <label id="swishes" class="text-white" style="font-size: 40px"></label> <!--greeting-->
+                <button class="btn btn-success btn-lg" data-toggle="modal" data-target="#myplan">View my plan</button>
+            </div>
+                <!--Slider-->
+            <div class="transparent text-white col-md-4 col-lg-4  ml-auto" >
+                <h3 class="p-3" id="day"></h3> <!--diet plan today-->
+                <div id="myCarousel" class="carousel slide" data-ride="carousel">
+                    <ol class="carousel-indicators">
+                        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                        <li data-target="#myCarousel" data-slide-to="1"></li>
+                        <li data-target="#myCarousel" data-slide-to="2"></li>
+                    </ol>
+                    <div class="carousel-inner ">
+                        <div class="item active">
+                            <div class="card trnspr">
+                                <h3 class="text-center m-2 card-title">Breakfast</h3>
+                                <div class="card-body">
+                                    <ul>
+                                        <li class="font-weight-bold list-unstyled">Ideal Time: 7-8 am</li><br>
+                                        <li class="pb-2" id="mrg1"></li>
+                                        <li class="pb-2" id="mrg2"></li>
+                                        <li class="pb-2" id="mrg3"></li>
+                                        <li class="pb-2" id="mrg4"></li>
+                                        <br><br>
+                                    </ul>
+                                </div>
+                            </div> 
+                        </div>        
+                        <div class="item">
+                            <div class="item active">
+                                <div class="card trnspr" >
+                                    <h3 class="text-center m-2 card-title">Lunch</h3>
+                                    <div class="card-body">
+                                        <ul>
+                                            <li class="font-weight-bold list-unstyled">Ideal Time: 12:30-2 pm</li><br>
+                                            <li class="pb-2" id="ln1"></li>
+                                            <li class="pb-2" id="ln2"></li>
+                                            <li class="pb-2" id="ln3"></li>
+                                            <li class="pb-2" id="ln4"></li>
+                                            <br><br>
+                                        </ul>
+                                    </div>
+                                </div>    
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="card trnspr">
+                                <h3 class="text-center m-2 card-title">Dinner</h3>
+                                <div class="card-body">
+                                    <ul>
+                                        <li class="font-weight-bold list-unstyled">Ideal Time: 7-9 pm</li><br>
+                                        <li class="pb-3" id="dn1"></li>
+                                        <li class="pb-3" id="dn2"></li>
+                                        <li class="pb-3" id="dn3"></li>
+                                        <li class="pb-3" id="dn4"></li>
+                                        <br><br>
+                                    </ul>
+                                </div>
+                            </div>    
+                        </div>
+                        <a href="#myCarousel" class="left carousel-control" data-slide="prev"></a>
+                        <a href="#myCarousel" class="right carousel-control" data-slide="next"></a>
+                    </div>
+                </div>
+            </div>
+        </div> 
+        <!--modal for users items-->
+        <div class="modal fade" id="myplan">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <img src="{% static 'images/apple.jpg' %}" alt="img" height="200px" width="100%">
+                        <button type="button" class="close" data-dismiss="modal">
+                            <span>&times;</span>
+                        </button>
+                    </div>  
+                    <h3 class="mx-auto">{{usrname.firstname}}, Your healthy dishes</h3>
+                    <div class="modal-body">
+                        <table class="table">
+                            <tr><td><b>Breakfast:</b></td></tr>
+                            <tr>
+                                <td id="item1">{{breakfast.morning}}</td>
+                            </tr>
+                            <tr><td><b>Lunch:</b></td></tr>
+                            <tr>
+                                <td id="item2">{{lunch.lunch}}</td>
+                            </tr>
+                            <tr><td><b>Dinner:</b></td></tr>
+                            <tr>
+                                <td id="item3">{{dinner.dinner}}</td>
+                            </tr>
+                            <tr><td class="text-center font-weight-bold" id="urock"></td></tr>
+                        </table>
+                    </div>
+                </div>     
+            </div>
+        </div>  
+    <script>
+            var myDate = new Date();
+            var hrs = myDate.getHours();
+            var greet;
+            if (hrs < 12)
+                greet = 'Good Morning';
+            else if (hrs >= 12 && hrs <= 17)
+                greet = 'Good Afternoon';
+            else if (hrs >= 17 && hrs <= 24)
+                greet = 'Good Evening';
+        
+            document.getElementById('wishes').innerHTML =
+                 greet +', {{usrname.firstname}}'
+            document.getElementById('swishes').innerHTML =
+                greet +', {{usrname.firstname}}'
+        
+         var mytime=new Date().toLocaleTimeString();
+         document.getElementById('time').innerHTML =mytime;
+         document.getElementById('stime').innerHTML =mytime;
+        
+               
+                  var d = new Date();
+                  var weekday = new Array(7);
+                  weekday[0] = "Sunday";
+                  weekday[1] = "Monday";
+                  weekday[2] = "Tuesday";
+                  weekday[3] = "Wednesday";
+                  weekday[4] = "Thursday";
+                  weekday[5] = "Friday";
+                  weekday[6] = "Saturday";
+                
+                  var n = weekday[d.getDay()];
+                  document.getElementById("day").innerHTML = 'Diet Plan -' + n;
+                  document.getElementById("today").innerHTML =  n;
+                  document.getElementById("stoday").innerHTML =  n;
+                   if(n=='Sunday'){
+                       document.getElementById('mrg1').innerHTML="Egg";
+                       document.getElementById('mrg2').innerHTML="Bread";
+                       document.getElementById('mrg3').innerHTML="Peanut butter";
+                       document.getElementById('mrg4').innerHTML="Watermelon";
+
+                       document.getElementById('ln1').innerHTML="Fruits";
+                       document.getElementById('ln2').innerHTML="1 Glass of water";
+                       document.getElementById('ln3').innerHTML="Chappathi & Curry";
+                       document.getElementById('ln4').innerHTML="Carrot";
+
+                       document.getElementById('dn1').innerHTML="Fruits";
+                       document.getElementById('dn2').innerHTML="Avocado and Egg Sandwich";
+                       document.getElementById('dn3').innerHTML="Water";
+                       document.getElementById('dn4').innerHTML="Almonds";
+                       
+                   }
+                else if(n=='Monday' ||'Wednesday'){
+                    document.getElementById('mrg1').innerHTML="Warm Water with lemon (Early Morning)";
+                    document.getElementById('mrg2').innerHTML="Tea";
+                    document.getElementById('mrg3').innerHTML="Godambu Puttu & Kadala Curry";
+                    document.getElementById('mrg4').innerHTML="Nuts"; 
+
+                    document.getElementById('ln1').innerHTML="Fruits";
+                    document.getElementById('ln2').innerHTML="1 Glass of water";
+                    document.getElementById('ln3').innerHTML="Rice & sambar,Thoran";
+                    document.getElementById('ln4').innerHTML="Chappathi";
+
+                    document.getElementById('dn1').innerHTML="Fishcurry";
+                    document.getElementById('dn2').innerHTML="Chappathi";
+                    document.getElementById('dn3').innerHTML="Water";
+                    document.getElementById('dn4').innerHTML="Almonds";
+                }
+                else if(n=='Tuesday' ||'Friday'){
+                    document.getElementById('mrg1').innerHTML="Warm Water with lemon (Early Morning)";
+                    document.getElementById('mrg2').innerHTML="Tea";
+                    document.getElementById('mrg3').innerHTML="Dosa Sambar";
+                    document.getElementById('mrg4').innerHTML="Nuts"; 
+
+                    document.getElementById('ln1').innerHTML="Fruits";
+                    document.getElementById('ln2').innerHTML="1 Glass of water";
+                    document.getElementById('ln3').innerHTML="Chappathi & Curry";
+                    document.getElementById('ln4').innerHTML="Carrot";
+
+                    document.getElementById('dn1').innerHTML="Edamame";
+                    document.getElementById('dn2').innerHTML="Avocado and Egg Sandwich";
+                    document.getElementById('dn3').innerHTML="Water";
+                    document.getElementById('dn4').innerHTML="Nuts";
+                }
+                else if(n=='Thursday' ||'Saturday'){
+                    document.getElementById('mrg1').innerHTML="Boiled Egg";
+                    document.getElementById('mrg2').innerHTML="Protein Shake";
+                    document.getElementById('mrg3').innerHTML="whole wheat toast";
+                    document.getElementById('mrg4').innerHTML=""; 
+
+                    document.getElementById('ln1').innerHTML="Fruits";
+                    document.getElementById('ln2').innerHTML="1 Glass of water";
+                    document.getElementById('ln3').innerHTML="Chappathi & Curry";
+                    document.getElementById('ln4').innerHTML="Carrot";
+
+                    document.getElementById('dn1').innerHTML="Orange";
+                    document.getElementById('dn2').innerHTML="Avial with Kerala Red Rice";
+                    document.getElementById('dn3').innerHTML="Water";
+                    document.getElementById('dn4').innerHTML="";
+                }
+    </script>  
+    <script>
+                 morning=document.getElementById('item1').innerHTML;
+                 afternoon=document.getElementById('item2').innerHTML;
+                 night=document.getElementById('item3').innerHTML;
+                if (morning && afternoon && night){
+                    document.getElementById('urock').innerHTML="You Rock😍<br>Stay Healthy";
+                }
+                else if(morning || afternoon || night){
+                    document.getElementById('urock').innerHTML="Awesome😎";
+                }
+    </script>
+                       
+</body>
+</html>

@@ -1,0 +1,130 @@
+{% extends 'master.html'%}
+{% load static %} {% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Diet & workout plan</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <style>
+        .bimg{
+            background-image: url("{% static 'images/diet.jpg' %}");
+            background-size: 100% 100%;
+            background-repeat: no-repeat;
+            height: 450px;
+            background-attachment: fixed;
+        }
+        .font{
+            font-family:'Courier New', Courier, monospace;
+            background:linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.7)); 
+            opacity: 0.8;
+            color: #f1f1f1;
+            height: 60px;
+        }
+        #text{
+            margin-top: 120px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container-fluid">
+        <h3 class="text-center m-2">Create your diet and workout plan</h3>
+        <div class="bimg">
+            <h3 class="text-center font p-3">Stay Healthy</h3>
+            <h1 class="text-center text-white" id="text">Let's Get Started</h1>
+        </div><br>
+        <form action="diet" method="POST">
+            {% csrf_token %}
+                <div class="input-group form-row">
+                    <input type="text" name="age" id="age" placeholder="Your age" class="form-control m-3" value="{{dietdata.age}}">
+                    <input type="text" name="weight" id="weight" class="form-control m-3" placeholder="Your current weight Eg: 0Kg" value="{{dietdata.weight}}">
+                </div>     
+                <div class="input-group form-row">
+                    <input type="text" name="height" id="height" placeholder="Your current height" class="form-control m-3" value="{{dietdata.height}}">
+                   <!-- <select name="condition" id="condition" class="form-control m-3">
+                        <option disabled selected>Medical Conditions</option>
+                        <option>None</option>
+                        <option value="">Diabetes</option>
+                        <option>Cholesterol</option>
+                        <option>Hypertension</option>
+                        <option>Physical Injury</option>
+                    </select>-->
+                    <input type="text" name="condition" id="condition" class="form-control m-3" placeholder="Medical Conditions" data-target="#medcl" data-toggle="modal" value="{{dietdata.medcondition}}">
+                </div>
+                <button type="submit" class="btn btn-danger btn-lg float-right mr-2">Next</button>
+              
+        </form>   
+                    <h6 style="color: red;">{{msg}}</h6>
+    </div>
+    <div class="medcl modal fade" id="medcl" style="margin-top: 25%">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="input-group">
+                    <input type="checkbox" name="none" id="no" class="m-3" value="None">
+                    <label for="none">None</label>
+                    </div>
+                    <div class="dropdown-divider"></div>
+                    <div class="input-group">
+                    <input type="checkbox" name="diabetes" id="diabetes" class="m-3" value="Diabetes">
+                    <label for="diabetes">Diabetes</label>
+                    </div>
+                    <div class="dropdown-divider"></div>
+                    <div class="input-group">
+                    <input type="checkbox" name="cholesterol" id="cholesterol" class="m-3" value="Cholesterol">
+                    <label for="cholesterol">Cholesterol</label>
+                    </div>
+                    <div class="dropdown-divider"></div>
+                    <div class="input-group">
+                    <input type="checkbox" name="hypertension" id="hypertension" class="m-3" value="Hypertension">
+                    <label for="hypertension">Hypertension</label>   
+                    </div>
+                    <div class="dropdown-divider"></div>
+                    <div class="input-group">     
+                    <input type="checkbox" name="physicalinjury" id="physicalinjury" class="m-3" value="Physical Injury">
+                    <label for="physicalinjury">Physical Injury</label>
+                    </div>
+                    <div class="input-group"> 
+                    <button type="submit" class="btn btn-info btn-block"onclick="getValue()" >Ok</button>
+                    </div>
+                </div>  
+            </div>
+            
+        </div>     
+    
+    <script>
+    function getValue() {
+             var ele=[]
+              var none = document.getElementById("no")
+              if(none.checked){
+                    ele.push(none.value);
+             }
+             var diabetes = document.getElementById("diabetes")
+              if(diabetes.checked){
+                    ele.push(diabetes.value);
+             }
+             var cholesterol = document.getElementById("cholesterol")
+              if(cholesterol.checked){
+                    ele.push(cholesterol.value);
+             }
+             var hypertension=document.getElementById("hypertension")
+             if (hypertension.checked){
+                 ele.push(hypertension.value);
+             }
+             var physicalinjury=document.getElementById("physicalinjury")
+             if(physicalinjury.checked){
+                 ele.push(physicalinjury.value);
+             }
+               if(ele.length>0){
+                document.getElementById("condition").value = ele;
+               }
+               else{
+               document.getElementById("condition").value = "Medical Conditions";
+               }
+    }
+    </script>
+    {% endblock %}
+</body>
+</html>

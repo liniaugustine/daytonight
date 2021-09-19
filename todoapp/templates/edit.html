@@ -1,0 +1,87 @@
+{% load static %} {% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title></title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script> <!--ajax-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous"><!--bootstrap-->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
+    <!-- add icon library-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<head>
+    
+<style>
+    .bimg{
+        background-image: url("{% static 'images/sea.jpg' %}");
+        background-repeat: no-repeat;
+        width: 100%;
+        background-size: cover;
+    }
+    .transparent{
+        background: rgb(0,0,0);
+        background: rgba(0,0,0,0.5);
+        color: #f1f1f1;
+        width: 100%;
+        height: 310px;
+    }
+    
+</style>
+</head>
+    <body>
+        <div class="container-fluid">
+            <div class="bimg"style="height: 400px">
+                <h3 class="text-light" style="margin-left: 60px">Hello {{userdata.firstname}}, Update your Todo's</h3><br>
+                <div class="col-md-12 col-lg-12">
+                    <form class="form-inline transparent" action="{{edititm.id}}" method="POST">
+                        {% csrf_token %}
+                        <div class="input-group col-lg-12 col-md-12 col-sm-10">
+                            <input type="text" class="form-control m-4" name="nwitm" id="nwitm" placeholder="Enter New Task.." style="padding: 30px; width:100%"
+                            value="{{  edititm.newtask }}">
+                        </div>
+                        <div class="input-group col-lg-6">
+                            <label for="date" class="mr-2"><h4>Set Date</h4></label>
+                            <input type="text" name="nwdt" id="nwdt" class="form-control p-4" style="border-radius: 7px;"  value="{{ edititm.date|date:'Y-m-d'}}" onfocus="(this.type='date')">
+                        </div>
+                        <div class=" input-group col-lg-6">
+                            <label for="time" class="mr-2"><h4>Set Time</h4></label>
+                            <input type="text" name="nwtim" id="nwtim" class="form-control p-4" style="border-radius: 7px;" value='{{ edititm.time|time:"h:i:s"}}' onfocus="(this.type='time')">
+                        </div>
+                        <div class="input-group ml-auto"> 
+                           
+                       <input type="submit" class="btn btn-primary btn-lg mr-3 p-3" name="add" style=" width: 150px" value="Update"><br><br>
+                    
+                    </div><br>
+                   </form>
+                   <h6 style="color: red;" class="text-center">{{ msg }} </h6>
+                </div>
+            </div>
+        </div> 
+        <script>
+                $(function(){
+                var dtToday = new Date();
+                
+                var month = dtToday.getMonth() + 1;
+                var day = dtToday.getDate();
+                var year = dtToday.getFullYear();
+                if(month < 10)
+                    month = '0' + month.toString();
+                if(day < 10)
+                    day = '0' + day.toString();
+                
+                var maxDate = year + '-' + month + '-' + day;
+            
+                // or instead:
+                // var maxDate = dtToday.toISOString().substr(0, 10);
+            
+                
+                $('#nwdt').attr('min', maxDate);
+            });
+                
+            </script>
+        {% endblock %}   
+        </body>

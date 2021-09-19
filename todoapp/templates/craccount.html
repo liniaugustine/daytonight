@@ -1,0 +1,126 @@
+{% extends 'master.html'%}
+{% load static %} {% block content %} 
+<head>
+    <title>CreateAccount</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script> <!--ajax-->
+    <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script> <!--validation-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous"> <!--bootstrap-->
+    <link rel="stylesheet" href="{% static 'css/todo.css' %}">
+    <style>
+       body{
+            background-image: url("{% static 'images/glass.jpg' %}");
+            background-size: cover;
+
+        }
+        .transparent{
+            background: rgb(0,0,0);
+            background: rgba(0,0,0,0.5);
+            color: #f1f1f1;
+            width: 100%;
+            height: 350px;
+        }
+        .error{
+            color: red;
+        } 
+    </style>
+</head>
+<body>
+    <div class="container transparent mt-5">
+        <h2 class="text-center">Create New Account</h2>
+        <div class="container mt-5">
+            <form id="valform" action="craccount" method="POST">
+                    {% csrf_token %}
+                <div class="input-group form-row">
+                    <input type="text" class="form-control" placeholder="First Name" name="fname" id="fname" style="border-radius: 10px">
+                    <input type="text" class="form-control" placeholder="Last Name" name="lname" id="lname" style="border-radius: 10px" >
+                </div><br>
+                <strong id="ulabel" class="text-danger"></strong>
+                <input type="email" class="form-control" name="em" id="uname" placeholder="@Username" style="border-radius: 10px"><br>
+                <div class="input-group form-row">
+                    <input type="password" class="form-control" placeholder="Password" name="pswrd" id="pswrd" style="border-radius: 10px">
+                    <input type="password" class="form-control" placeholder="Confirm Password" name="cpswrd" id="cpswrd" style="border-radius: 10px">
+                </div><br>
+                
+                <button type="submit" class="btn btn-primary" onclick="myform()">Create Account</button>
+                {{msg}}
+            </form>
+        </div>
+    </div>
+    <script>
+        $(document).ready(function(){
+            jQuery.validator.addMethod("noSpace", function(value, element)
+                { 
+                    return (value.indexOf(" ")<0) || (value.trim()==value);});
+            
+            $('#valform').validate({
+                rules:{
+                    fname:{
+                        required: true,
+                        noSpace: true
+                    },
+                    lname:{
+                        required:true,
+                        noSpace:true
+                    },
+                    em:{
+                        required: true,
+                        email: true
+                    },
+                    pswrd:{
+                        required: true,
+                        minlength:5,
+                        noSpace: true
+                    },
+                    cpswrd:{
+                        required: true,
+                        equalTo: '#pswrd',
+                        minlength:5,
+                        noSpace: true
+                    }
+                },
+                messages:{
+                    fname: 'This field is required',
+                    lname: 'This field is required',
+                    em: 'Enter a valid email',
+                    pswrd: {
+                        minlength: 'password must be atleast 5 characters',
+                        noSpace: 'Enter a valid password'
+                    },
+                    cpswrd: {
+                        minlength: 'password must match',
+                        equalTo: 'password must match',
+                        noSpace: 'Enter a valid password'
+                    }
+                },
+            submitHandler: function(form){
+                form.submit();
+            }
+
+            })
+        });
+    </script>
+
+<script>
+        $(document).ready(function(){
+            $('#uname').blur(function(){
+                usname=$('#uname').val()
+                $.ajax({
+                    url:'login2',
+                    type:'GET',
+                    data:{
+                        'uname':usname
+                    },
+                    success:function(response){
+                        if(response.msg){
+                            $('#ulabel').html('Username already exists')
+                        }
+                        else{
+                            $('#ulabel').html("")
+                        }
+                    }
+                })
+            })
+        });
+    </script>
+{% endblock %}
+</body>

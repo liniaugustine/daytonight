@@ -1,0 +1,87 @@
+{% extends 'master.html'%}
+{% load static %} {% block content %}
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script> <!--ajax-->
+    <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script> <!--validation-->
+    <link rel="stylesheet" href="{% static 'css/todo.css' %}">
+    <style>
+        body{
+        background-image:url("{% static 'images/login.jpg' %}");
+        background-size: cover;
+        }
+        .card{
+            background:linear-gradient( rgba(0,0,0,0.7),
+            rgba(0,0,0,0.7));
+            opacity: 0.8;
+        }
+        .form-control{
+            border-radius: 50px;
+            
+        }
+        button[type="submit"]{
+            border-radius: 50px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container-fluid text-center">
+        <h2>Welcome!</h2>
+        <h4>Let's do some work</h4><br>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4"></div>
+            <div class="col-md-4">
+                <div class="form mt-5">
+                    <form action="logintodo" method="POST">
+                            {% csrf_token %}
+                            <div class="card">
+                            <div class="card-body">
+                                <div class="d-flex justify-content-center">
+                                 <img src="{% static 'images/login2.png' %}" alt="loginimg" class="rounded-circle" style="height: 100px">
+                                </div><br>
+                                <div class="form-group">
+                                        
+                                        <strong id="ulabel" style="color: red">{{ message }}</strong>
+                                    <input type="text" name="uname" id="uname" class="form-control" placeholder="Username">
+                                </div>
+                                <div class="input-group">
+                                    <input type="password" name="password" id="password" class="form-control" placeholder="Password">
+                                </div><br>
+                                <button type="submit" class="btn btn-primary btn-block">
+                                Login</button>
+                                <a  class="text-white" href="#">Forgot Password?</a><br>
+                                <button type="submit" class="btn btn-block btn-primary">
+                                <a style="overflow: hidden; text-decoration: none;" class="text-white" href="craccount">Create an account</button></a>
+                            </div>
+                        </div>   
+                        
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--<script>
+        $(document).ready(function(){
+            $('#uname').blur(function(){
+                usname=$('#uname').val()
+                $.ajax({
+                    url:'login2',
+                    type:'GET',
+                    data:{
+                        'uname':usname
+                    },
+                    success:function(response){
+                        if(response.msg){
+                            $('#ulabel').html('Username already exists')
+                        }
+                        else{
+                            $('#ulabel').html("")
+                        }
+                    }
+                })
+            })
+        });
+    </script>-->
+    {% endblock %}
+</body>

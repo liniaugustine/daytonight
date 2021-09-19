@@ -1,0 +1,40 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>notes</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous"><!--bootstrap-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> <!--icon library-->
+
+</head>
+<body onload="changecolor()">
+        <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+            <a class="navbar-brand" href="notes"><i class="fa fa-home"></i> Home</a>
+        </nav>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <form class="form-inline my-2 my-lg-0 ml-auto" action="notes2" method="POST">
+                        {% csrf_token %}
+                    <div class="input-group">
+                        <input class="form-control border border-right-0" type="search" placeholder="Search" aria-label="Search" name="note">
+                        <span class="input-group-append">
+                            <button type="submit" class="btn btn-secondary border border-left-0"><i class="fa fa-search"></i></button>
+                        </span>
+                    </div>
+                </form>
+        </nav>  
+        <div class="container">
+            <h3>Your notes </h3>  
+            
+            {% for item in notes %}
+            <ul class="list-unstyled">
+                <li id="noteclr" style="color:{{item.mycolor}}"><a href="delnotes/{{item.id}}"><bold class="mr-2">&times;</bold></a>{{item.mynote}}</li>
+            </ul>
+            {% endfor %}
+        </div>
+        
+</body>
+</html>

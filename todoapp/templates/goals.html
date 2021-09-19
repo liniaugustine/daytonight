@@ -1,0 +1,80 @@
+{% extends 'master.html'%}
+{% load static %} {% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Goals</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+    <style>
+        
+        img:hover{
+            opacity: 0.7;
+            
+        }
+        img{
+            opacity: 1.0;
+        }
+       
+        .container-fluid {
+            position: relative;
+            margin: 0 auto;
+        }
+        .container-fluid .content {
+           width: 500px;
+           position: absolute;
+           bottom: 0;
+           background: rgb(0, 0, 0); /* Fallback color */
+           background: rgba(0, 0, 0, 0.5); /* Black background with 0.5 opacity */
+           color: #f1f1f1;
+           padding: 20px;
+           border: 10px ;
+           border-radius: 45px 0px;
+           font-size: 40px;
+           top: 50%;
+           left: 50%;
+           transform: translate(-50%, -50%);
+        }
+        .gtext{
+            border: 15px solid skyblue;
+            border-radius: 10px;
+        }
+        .days{
+            border: 2px solid black;
+            border-radius: 50%;
+        }
+        
+    </style>
+</head>
+<body>
+        <div class="container-fluid">
+        
+    </div>
+    <div class="container-fluid">
+        
+<img src="{% static 'images/goal2.jpg' %}" alt="img" width="100%" height="400px">
+<div class="content text-center"><b style="text-shadow: 2px 2px red">Set your goals here</b><br>
+A goal without a timeline is just a dream</div>
+</div><br>
+<div class="container-fluid">
+    <form action="" class="form-inline">
+        <div class="col-lg-6">
+        <div class="form-group">
+       <input type="text" name=""placeholder="Set your Goal" class="p-3 m-5 form-control w-100">
+        </div>
+        </div>
+        <div class="col-lg-6">
+        <div class="form-group">
+      <input type="date" name="" id="" class="p-3 form-control w-100">
+</div>
+</div>
+</form>
+<div class="text-center ">
+<h4>Days left</h4><input placeholder="0 days" disabled class="days text-center p-5 m-3">
+</div>
+</div>
+{% endblock %}
+</body>
+</html>

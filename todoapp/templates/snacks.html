@@ -1,0 +1,111 @@
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Snacks</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+    <style>
+        .mytext{
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            position: absolute;
+            color: white;
+            background: rgb(0, 0, 0); 
+           background: rgba(0, 0, 0, 0.5);
+           padding: 15px;
+           width: 300px;
+           border-radius: 10px;
+           text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container-fluid">
+            <nav class="bg-dark">
+                    <ul class="navbar-nav">
+                        <li class="nav-item navbar-brand">
+                            <a class="nav-link text-light pl-3" href="plan2">Home</a>
+                        </li>
+                    </ul>
+                </nav><br>
+        <h2 class="text-center">A Healthy food for a Healthy mood</h2>
+        <div class="row">
+            <div class="col-lg-3">
+                <img src="{% static 'images/blueberry.jpg' %}" alt="" style="height: 200px; width: 100%">
+                    <h4 class="mytext">1 Cup Blueberries</h4>
+            </div>
+            <div class="col-lg-3">
+                    <img src="{% static 'images/apple.jpg' %}" alt="" style="height: 200px; width: 100%">
+                    <h4 class="mytext">1 Apple</h4>
+            </div>
+            <div class="col-lg-3">
+                    <img src="{% static 'images/bananaimg.jpg' %}" alt="" style="height: 200px; width: 100%">
+                    <h4 class="mytext">1 Small Banana</h4>
+            </div>
+            <div class="col-lg-3">
+                    <img src="{% static 'images/grapes.png' %}" alt="" style="height: 200px; width: 100%">
+                    <h4 class="mytext">30 Grapes</h4>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-3">
+                <img src="{% static 'images/almonds.jpg' %}" alt="" style="height: 200px; width: 100%">
+                <h4 class="mytext">14 Almonds</h4>
+            </div>
+            <div class="col-lg-3">
+                <img src="{% static 'images/egg.jpg' %}" alt="" style="height: 200px; width: 100%">
+                <h4 class="mytext">1 Egg</h4>
+            </div>
+            <div class="col-lg-3">
+                <img src="{% static 'images/carrot.jpg' %}" alt="" style="height: 200px; width: 100%">
+                <h4 class="mytext">4 Medium Carrots</h4>
+            </div>
+            <div class="col-lg-3">
+                <img src="{% static 'images/popcorn.jpg' %}" alt="" style="height: 200px; width: 100%">
+                <h4 class="mytext">3 Cups Popcorn</h4>
+            </div>
+        </div>
+        <div class="row">
+                <div class="col-lg-3">
+                    <img src="{% static 'images/tomato.jpg' %}" alt="" style="height: 200px; width: 100%">
+                    <h4 class="mytext">30 Cherry Tomatos</h4>
+                </div>
+                <div class="col-lg-3">
+                    <img src="{% static 'images/sweet.jpg' %}" alt="" style="height: 200px; width: 100%">
+                    <h4 class="mytext">1 Sweet Potato</h4>
+                </div>
+                <div class="col-lg-3">
+                    <img src="{% static 'images/cantaloupe.jpg' %}" alt="" style="height: 200px; width: 100%">
+                    <h4 class="mytext">1/2 Candaloupe</h4>
+                </div>
+                <div class="col-lg-3">
+                    <img src="{% static 'images/peanut.jpg' %}" alt="" style="height: 200px; width: 100%">
+                    <h4 class="mytext">1 Tablespoon Peanut Butter</h4>
+                </div>
+            </div>
+            <div class="row">
+                    <div class="col-lg-3">
+                        <img src="{% static 'images/avocado.jpg' %}" alt="" style="height: 200px; width: 100%">
+                        <h4 class="mytext">1/2 Avocado</h4>
+                    </div>
+                    <div class="col-lg-3">
+                        <img src="{% static 'images/clementine.jpg' %}" alt="" style="height: 200px; width: 100%">
+                        <h4 class="mytext">3 Clementines</h4>
+                    </div>
+                    <div class="col-lg-3">
+                        <img src="{% static 'images/edamame.jpg' %}" alt="" style="height: 200px; width: 100%">
+                        <h4 class="mytext">1/2 Cup Edamame</h4>
+                    </div>
+                    <div class="col-lg-3">
+                        <img src="{% static 'images/yoghurt.jpg' %}" alt="" style="height: 200px; width: 100%">
+                        <h4 class="mytext">Yogurt with fruit</h4>
+                    </div>
+                </div>    
+    </div>
+</body>
+</html>
