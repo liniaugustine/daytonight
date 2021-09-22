@@ -68,7 +68,6 @@ def hometodo(request):
     udetails=Udetails.objects.get(loginid=logid)  
     return render(request,'hometodo.html',{'tsk':tasks,'userdata':udetails}) 
 
-
 def updatetask(request,itmid):
     logid=request.session['id'] 
     if request.method=='POST':
@@ -82,8 +81,6 @@ def updatetask(request,itmid):
         edititm=Task.objects.get(id=itmid)  
         return render(request, 'edit.html', { 'userdata':udetails, 'edititm':edititm,})     
     
-def goals(request):
-    return render(request, 'goals.html')
 def notes(request):
     logid=request.session['id']
     if request.method=='POST':
@@ -98,6 +95,7 @@ def notes(request):
         except:  
             return render(request, 'notes.html',{'msge':'Error'})  
     return render(request, 'notes.html')
+
 def notes2(request):
     logid=request.session['id']
     if request.method=='POST':
@@ -121,20 +119,25 @@ def lists(request):
         tasks2=Task.objects.filter(Q(loginid=logid), status='active')
         taskitems=Task.objects.filter(loginid=logid)
         return render(request, 'lists.html', {'taskdata':taskitems, 'task':tasks, 'activetask':tasks2}) 
+
 def delete(request,dltitmid):
     logid=request.session['id']
     updtstatus=Task.objects.filter(id=dltitmid).update(status='inactive')
     return redirect('hometodo')
+
 def delnotes(request,noteid):
     delnote=Notes.objects.filter(id=noteid).delete()  
     return redirect('notes2') 
+
 def dltitm(request,dltid):
     dellists=Task.objects.filter(id=dltid).delete()
     return redirect('lists')     
+
 def deleteacc(request): 
     logindata=request.session['id']
     delaccount=Udetails.objects.get(loginid=logindata).delete() 
     return redirect('logintodo') 
+
 def diet(request):
     logid=request.session['id']
     
@@ -166,12 +169,6 @@ def diet(request):
     else:
        return render(request, 'diet.html')               
        
-def diet2(request):
-    return render(request, 'diet2.html')
-def diet3(request):
-    return render(request, 'diet3.html')   
-def plan(request):
-    return render(request, 'plan.html')
 def plan2(request):
     return render(request, 'plan2.html')
 def snacks(request):
@@ -184,11 +181,13 @@ def day2(request):
     return render(request, 'day2.html')
 def day3(request):
     return render(request, 'day3.html') 
+
 def pendinglist(request):
     logid=request.session['id']
     tasks=Task.objects.filter(loginid=logid, status='active')   
     udetails=Udetails.objects.get(loginid=logid)  
     return render(request, 'pendinglist.html', {'usrname':udetails,'tsk':tasks })    
+
 def profile(request):
     logid=request.session['id']
     logindetails=Login.objects.get(id=logid)
@@ -199,6 +198,7 @@ def profile(request):
         return render(request, 'profile.html', {'userdetails':udetails, 'ldetails':logindetails, 'dietplan':dietdt})  
     else:
         return render(request, 'profile.html', {'userdetails':udetails, 'ldetails':logindetails})        
+
 def today(request):
     logid=request.session['id']
     udetails=Udetails.objects.get(loginid=logid) 
@@ -233,6 +233,7 @@ def today(request):
         return render(request, 'today.html', {'usrname':udetails, 'dinner':dinner})   
     else:
         return render(request, 'today.html', {'usrname':udetails})
+
 def food(request):
     logid=request.session['id']
     if request.method=='POST':
@@ -248,6 +249,7 @@ def food(request):
             return redirect('plan2')
     else:    
         return render(request, 'plan2.html',{'msg':'error'})    
+
 def lunch(request):
     logid=request.session['id']
     if request.method=='POST':  
@@ -263,6 +265,7 @@ def lunch(request):
             return redirect('plan2')
     else:    
         return render(request, 'plan2.html',{'mesg':'error'})        
+
 def dinner(request):
     logid=request.session['id']
     if request.method=='POST':  
