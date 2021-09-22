@@ -24,6 +24,7 @@ urlpatterns = [
     path('plan2', views.plan2, name='plan2'),
     path('snacks', views.snacks, name='snacks'),
     path('water', views.water, name='water'),
+    path('sunday', views.sunday, name='sunday'),
     path('day2',views.day2, name='day2'),
     path('day3',views.day3, name='day3'),
     path('updatetask/<int:itmid>', views.updatetask, name='updatetask'),

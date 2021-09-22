@@ -110,6 +110,8 @@ def notes2(request):
           
 def lists(request):
     logid=request.session['id'] 
+    tasks=Task.objects.filter(Q(loginid=logid), status='inactive')
+    tasks2=Task.objects.filter(Q(loginid=logid), status='active')
     if request.method=='POST':
         srch=request.POST['search'] 
         srchitm=Task.objects.filter(Q(newtask__icontains=srch)|Q(date__icontains=srch)|Q(time__icontains=srch), loginid=logid) 
@@ -176,6 +178,8 @@ def snacks(request):
     return render(request, 'snacks.html')
 def water(request):
     return render(request, 'water.html') 
+def sunday(request):
+    return render(request, 'sunday.html')    
 def day2(request):
     return render(request, 'day2.html')
 def day3(request):

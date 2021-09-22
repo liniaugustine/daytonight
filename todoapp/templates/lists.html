@@ -25,25 +25,28 @@
             {% for itm in tasksearch %}
             <tr> 
                 <td><a href="dltitm/{{itm.id}}"><button class="btn btn-danger"><i class="fa fa-trash"></i></button></a> {{itm.newtask}} @ {{itm.time}} </td>
-           
+                
             </tr> 
             {% endfor %}
             {% for itm in activetask %}
             <tr> 
-                <td><a href="dltitm/{{itm.id}}"><button class="btn btn-danger"><i class="fa fa-trash"></i></button></a> {{itm.newtask}} @ {{itm.time}} </td>
+                <td><a href="dltitm/{{itm.id}}"><button class="btn btn-danger"><i class="fa fa-trash"></i></button></a> {{itm.newtask}} @ {{itm.time}} {{itm.date}}</td>
                 <td><h6 style="color: red">Uncompleted</h6></td> 
+               
             </tr> 
             {% endfor %}
             {% for itm in task %}
             <tr> 
-                <td><a href="dltitm/{{itm.id}}"><button class="btn btn-danger"><i class="fa fa-trash"></i></button></a> {{itm.newtask}} @ {{itm.time}} </td>
-                <td> <h6 style="color: green">Task completed</h6></td> 
+                <td><a href="dltitm/{{itm.id}}"><button class="btn btn-danger"><i class="fa fa-trash"></i></button></a> {{itm.newtask}} @ {{itm.time}} {{itm.date}}</td>
+                <td> <h6 style="color: green">Task completed</h6></td>
+                
             </tr> 
             {% endfor %}
             
         </table>
         
     </div>
+    
     
     {% endblock %}
 </body>
