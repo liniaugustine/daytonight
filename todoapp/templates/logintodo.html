@@ -38,7 +38,7 @@
                             <div class="card">
                             <div class="card-body">
                                 <div class="d-flex justify-content-center">
-                                 <img src="{% static 'images/login2.png' %}" alt="loginimg" class="rounded-circle" style="height: 100px">
+                                 <img src="{% static 'images/login2.PNG' %}" alt="loginimg" class="rounded-circle" style="height: 100px">
                                 </div><br>
                                 <div class="form-group">
                                         
@@ -61,27 +61,6 @@
             </div>
         </div>
     </div>
-    <!--<script>
-        $(document).ready(function(){
-            $('#uname').blur(function(){
-                usname=$('#uname').val()
-                $.ajax({
-                    url:'login2',
-                    type:'GET',
-                    data:{
-                        'uname':usname
-                    },
-                    success:function(response){
-                        if(response.msg){
-                            $('#ulabel').html('Username already exists')
-                        }
-                        else{
-                            $('#ulabel').html("")
-                        }
-                    }
-                })
-            })
-        });
-    </script>-->
+    
     {% endblock %}
 </body>
