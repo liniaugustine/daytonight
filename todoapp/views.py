@@ -2,6 +2,7 @@ from django.shortcuts import render,redirect
 from django.http import HttpResponse,JsonResponse
 from . models import *
 
+
 def firstpg(request):
     return render(request, 'firstpg.html')
 def logintodo(request):
@@ -47,7 +48,8 @@ def login2(request):
     else:
         return JsonResponse({
             'msg':False
-        })   
+        })  
+                
 def hometodo(request):
     logid=request.session['id'] 
     if request.method=='POST':
